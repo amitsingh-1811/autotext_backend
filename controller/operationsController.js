@@ -199,7 +199,7 @@ const updateOperationController = async function(req, res){
                 break;
             
             default:
-                throw new ErrorHandler("invalid operation.");
+                throw new ErrorHandler("invalid operation.",422);
         }
 
         return res.status(200).json({result: "operation updated successfully."});
@@ -212,7 +212,7 @@ const updateOperationController = async function(req, res){
                 message: "result not found."
             })
     
-            return res.status(400).json({
+            return res.status(error.statusCode).json({
                 success: false,
                 message: error.message || "something went wrong."
             })
@@ -243,4 +243,4 @@ const getFibonacci = function(count){
     return fib;
 }
 
-export {additionController, multiplicationController, factorialController, fibonacciController, getAllOperationsController, deleteOperationController, updateOperationController};
+export {additionController, multiplicationController, factorialController, fibonacciController, getAllOperationsController, deleteOperationController, updateOperationController, getFactorial, getFibonacci};
